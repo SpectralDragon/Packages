@@ -16,6 +16,8 @@
 		EF1799D923F996CA00A09CD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF1799D723F996CA00A09CD9 /* LaunchScreen.storyboard */; };
 		EF1799E423F996CA00A09CD9 /* PackagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1799E323F996CA00A09CD9 /* PackagesTests.swift */; };
 		EF1799EF23F996CA00A09CD9 /* PackagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1799EE23F996CA00A09CD9 /* PackagesUITests.swift */; };
+		EF179A0023F99AE600A09CD9 /* DocumentBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1799FF23F99AE600A09CD9 /* DocumentBrowser.swift */; };
+		EF179A0223F99BE800A09CD9 /* PackagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF179A0123F99BE800A09CD9 /* PackagesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		EF1799EA23F996CA00A09CD9 /* PackagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PackagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1799EE23F996CA00A09CD9 /* PackagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesUITests.swift; sourceTree = "<group>"; };
 		EF1799F023F996CA00A09CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF1799FC23F996E200A09CD9 /* Packages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Packages.entitlements; sourceTree = "<group>"; };
+		EF1799FF23F99AE600A09CD9 /* DocumentBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowser.swift; sourceTree = "<group>"; };
+		EF179A0123F99BE800A09CD9 /* PackagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +106,12 @@
 		EF1799C823F996C800A09CD9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				EF179A0323F99DA800A09CD9 /* General */,
+				EF1799FE23F99ADC00A09CD9 /* Views */,
+				EF1799FD23F99AC800A09CD9 /* UserStory */,
+				EF1799FC23F996E200A09CD9 /* Packages.entitlements */,
 				EF1799C923F996C800A09CD9 /* AppDelegate.swift */,
 				EF1799CB23F996C800A09CD9 /* SceneDelegate.swift */,
-				EF1799D023F996C800A09CD9 /* ContentView.swift */,
 				EF1799D223F996CA00A09CD9 /* Assets.xcassets */,
 				EF1799D723F996CA00A09CD9 /* LaunchScreen.storyboard */,
 				EF1799DA23F996CA00A09CD9 /* Info.plist */,
@@ -137,6 +145,30 @@
 				EF1799F023F996CA00A09CD9 /* Info.plist */,
 			);
 			path = PackagesUITests;
+			sourceTree = "<group>";
+		};
+		EF1799FD23F99AC800A09CD9 /* UserStory */ = {
+			isa = PBXGroup;
+			children = (
+				EF1799D023F996C800A09CD9 /* ContentView.swift */,
+				EF179A0123F99BE800A09CD9 /* PackagesView.swift */,
+			);
+			path = UserStory;
+			sourceTree = "<group>";
+		};
+		EF1799FE23F99ADC00A09CD9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF1799FF23F99AE600A09CD9 /* DocumentBrowser.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EF179A0323F99DA800A09CD9 /* General */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,9 +303,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF1799CA23F996C800A09CD9 /* AppDelegate.swift in Sources */,
+				EF179A0223F99BE800A09CD9 /* PackagesView.swift in Sources */,
 				EF1799CF23F996C800A09CD9 /* Packages.xcdatamodeld in Sources */,
 				EF1799D123F996C800A09CD9 /* ContentView.swift in Sources */,
 				EF1799CC23F996C800A09CD9 /* SceneDelegate.swift in Sources */,
+				EF179A0023F99AE600A09CD9 /* DocumentBrowser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +472,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Packages/Packages.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Packages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8PYCRS3EA3;
 				ENABLE_PREVIEWS = YES;
@@ -449,6 +485,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.litecode.Packages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,7 +495,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Packages/Packages.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Packages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8PYCRS3EA3;
 				ENABLE_PREVIEWS = YES;
@@ -469,6 +508,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.litecode.Packages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
