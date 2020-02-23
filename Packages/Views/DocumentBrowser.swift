@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DocumentBrowser: UIViewControllerRepresentable {
     
-    @Binding var selectedDocument: PlaygroundDocument?
+    var selectedDocument: (PlaygroundDocument) -> Void
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentBrowser>) -> UIDocumentBrowserViewController {
         let vc = UIDocumentBrowserViewController()
@@ -26,33 +26,26 @@ struct DocumentBrowser: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> DocumentBrowser.Coordinator {
-        return Coordinator(selectedDocument: self.$selectedDocument)
+        return Coordinator(selectedDocument: self.selectedDocument)
     }
     
     class Coordinator: NSObject, UIDocumentBrowserViewControllerDelegate {
         
-        @Binding var selectedDocument: PlaygroundDocument?
+        var selectedDocument: (PlaygroundDocument) -> Void
         
-        init(selectedDocument: Binding<PlaygroundDocument?>) {
-            self._selectedDocument = selectedDocument
+        init(selectedDocument: @escaping (PlaygroundDocument) -> Void) {
+            self.selectedDocument = selectedDocument
         }
         
         func documentBrowser(_ controller: UIDocumentBrowserViewController, didPickDocumentsAt documentURLs: [URL]) {
             guard let documentURL = documentURLs.first else { return }
-            self.selectedDocument = PlaygroundDocument(fileURL: documentURL)
+            self.selectedDocument(PlaygroundDocument(fileURL: documentURL))
+        }
+        
+        func documentBrowser(_ controller: UIDocumentBrowserViewController, didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void) {
+            
         }
         
     }
     
-}
-
-class PlaygroundDocument: UIDocument {
-    
-    override func contents(forType typeName: String) throws -> Any {
-        return Data()
-    }
-    
-    override func load(fromContents contents: Any, ofType typeName: String?) throws {
-        guard let root = contents as? FileWrapper else { return }
-    }
 }
